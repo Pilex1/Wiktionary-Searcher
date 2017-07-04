@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Latin Wiktionary", "Latin Wiktionary\Latin Wiktionary.csproj", "{7EE6F1B0-8781-4107-9463-B78D6E8B6FE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B1DE9DF0-F4CB-4EF9-927D-B47214B2BA54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Offline Dictionary", "Offline Dictionary\Offline Dictionary.csproj", "{7062A20C-0163-4B67-8B5C-0F9D5EB097EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit Test - Wiktionary Translator", "Tests\Unit Test - Wiktionary Translator\Unit Test - Wiktionary Translator.csproj", "{5859C0D3-84DB-4EB5-B1C5-47F4FEE1DF47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EE6F1B0-8781-4107-9463-B78D6E8B6FE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE6F1B0-8781-4107-9463-B78D6E8B6FE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE6F1B0-8781-4107-9463-B78D6E8B6FE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE6F1B0-8781-4107-9463-B78D6E8B6FE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1DE9DF0-F4CB-4EF9-927D-B47214B2BA54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1DE9DF0-F4CB-4EF9-927D-B47214B2BA54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1DE9DF0-F4CB-4EF9-927D-B47214B2BA54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1DE9DF0-F4CB-4EF9-927D-B47214B2BA54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7062A20C-0163-4B67-8B5C-0F9D5EB097EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7062A20C-0163-4B67-8B5C-0F9D5EB097EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7062A20C-0163-4B67-8B5C-0F9D5EB097EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7062A20C-0163-4B67-8B5C-0F9D5EB097EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5859C0D3-84DB-4EB5-B1C5-47F4FEE1DF47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5859C0D3-84DB-4EB5-B1C5-47F4FEE1DF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5859C0D3-84DB-4EB5-B1C5-47F4FEE1DF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5859C0D3-84DB-4EB5-B1C5-47F4FEE1DF47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
