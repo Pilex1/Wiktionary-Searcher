@@ -97,5 +97,37 @@ namespace Unit_Test___Wiktionary_Translator {
             Assert.AreEqual("Symbol", f.Translations[26].g);
             Assert.AreEqual("allele (recessive)", f.Translations[26].s);
         }
+
+        [TestMethod]
+        public void aa() {
+            Translator t = new Translator();
+            t.Language = "English";
+            FullTranslation f = t.Translate("aa");
+
+            Assert.AreEqual("(volcanology) A form of lava flow associated with Hawaiian-type volcanoes, consisting of basaltic rock, usually dark-colored with a jagged and loose, clinkery surface. Compare pahoehoe. [First attested in the mid 19th century.]", f.Translations[0].s);
+
+        }
+
+        [TestMethod]
+        public void Aaronic() {
+            Translator t = new Translator();
+            t.Language = "English";
+            FullTranslation f = t.Translate("Aaronic");
+
+            Assert.AreEqual("Pertaining to Aaron. [First attested in the mid 17th century.]", f.Translations[0].s);
+            Assert.AreEqual("Pertaining to or characteristic of a high priest; priestly. [First attested in the mid 17th century.]", f.Translations[1].s);
+            Assert.AreEqual("(Mormonism) Of or pertaining to the lower order of priests. [First attested in the early 19th century.]", f.Translations[2].s);
+
+        }
+
+        [TestMethod]
+        public void Aaronical() {
+            Translator t = new Translator();
+            t.Language = "English";
+            FullTranslation f = t.Translate("Aaronical");
+
+            Assert.AreEqual("Alternative form of Aaronic [First attested in the early 17th century.]", f.Translations[0].s);
+
+        }
     }
 }

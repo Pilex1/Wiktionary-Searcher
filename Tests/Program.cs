@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using LibUtil;
+using System.IO;
 
 namespace Tests {
 
 
     class Program {
 
-
-
         static void Main(string[] args) {
 
-            //   DisplayTranslation("an", "Latin");
+            //foreach (string file in Directory.GetFiles("C:/Users/torcm/AppData/Roaming/Plexico/Wiktionary Searcher/", "*.txt", SearchOption.AllDirectories)) {
+            //    FixFile(file);
+            //}
 
             Console.WriteLine("THE SUPER AWESOME WIKTIONARY SEARCHER");
             Console.WriteLine("© ALEX TAN 2017");
@@ -21,6 +23,8 @@ namespace Tests {
             Console.WriteLine("\tIf you leave the language option blank, it will default to the previous language");
             Console.WriteLine("\t(or English if there is no previous language)");
             Console.WriteLine();
+
+            DisplayTranslation("かん", "Japanese");
 
 
             //for (int i = 0; i < 30; i++) {

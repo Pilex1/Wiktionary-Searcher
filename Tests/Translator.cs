@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using LibUtil;
+using System.Threading.Tasks;
 
 namespace Tests {
     public class Translator {
@@ -60,6 +61,9 @@ namespace Tests {
 
             if (afterLatinIndex == -1) {
                 afterLatinIndex = s.Length;
+            }
+            if (latinIndex == -1) {
+                return "";
             }
             s = s.Substring(latinIndex, afterLatinIndex - latinIndex);
             return s;
@@ -291,11 +295,22 @@ namespace Tests {
                 }
             }
 
-            // remove superscripts
-            s = Regex.Replace(s, "<sup [\\s\\S]+?></sup>", "");
+            s = s.CleanHTML();
+            s = Regex.Replace(s, "[\\s]{2,}", " ");
+            s = Regex.Replace(s, "[\\s]+?\\.", ".");
 
-            // replace links with regular text
-            s = Regex.Replace(s, "<a href=\"[\\s\\S]+?\">([\\s\\S]+?)</a>", "$1");
+
+            /*
+            s = Regex.Replace(s, "<a href=[\\s\\S]*?>([\\s\\S]+?)</a>", "$1");
+
+            // replace span class with just the text inside
+            s = Util.IterateRegexReplace(s, "<span[^<>]+?>([\\s\\S]*?)</span>", "$1");
+
+            // remove superscripts
+            s = Regex.Replace(s, "<sup [^<>]+?>[^<>]*?</sup>", "");
+            s = Regex.Replace(s, "<sup>([^<>]+?)</sup>", "$1");
+
+
 
             // replace bolded words with just the word
             s = Regex.Replace(s, "<b>([\\s\\S]+?)</b>", "$1");
@@ -303,27 +318,8 @@ namespace Tests {
             // replace italicised words with just the word
             s = Regex.Replace(s, "<i[\\s\\S]*?>([\\s\\S]+?)</i>", "$1");
 
-            // replace span class with just the text inside
-            s = Regex.Replace(s, "<span class=\"[\\s\\S]+?\">([\\s\\S]+?)</span>", "$1");
-            s = Regex.Replace(s, "<span class=\"[\\s\\S]+?\">([\\s\\S]+?)</span>", "$1");
+            s = Regex.Replace(s, "<strong class=\"[^<>]+?\">([^<>]+?)</strong>", "$1");
 
-            s = Regex.Replace(s, "<strong class=\"[\\s\\S]+?\">([\\s\\S]+?)</strong>", "$1");
-
-
-            /*
-            // beautifying brackets
-            // brackets seem to be surrounded by HTML code
-            s = Regex.Replace(s, "<span class=\"ib-brac\">([\\s\\S])</span>", "$1");
-            s = Regex.Replace(s, "<span class=\"ib-brac qualifier-brac\">([\\s\\S])</span>", "$1");
-
-            s = Regex.Replace(s, "<span class=\"ib-content\">([\\s\\S]+?)</span>", "$1");
-            s = Regex.Replace(s, "<span class=\"ib-content qualifier-content\">([\\s\\S]+?)</span>", "$1");
-
-            // commas seem to be surrounded
-            s = Regex.Replace(s, "<span class=\"ib-comma\">([\\s\\S]+?)</span>", "$1");
-            s = Regex.Replace(s, "<span class=\"ib-comma qualifier-comma\">([\\s\\S]+?)</span>", "$1");*/
-
-            s = Regex.Replace(s, "<a href=\"[\\s\\S]+?\" class=\"[\\s\\S]+?\" title=\"[\\s\\S]+?\">([\\s\\S]+?)</a>", "$1");
 
             // removing links involving Latin inflection
             s = Regex.Replace(s, "<i class=\"Latn mention\" lang=\"la\"[\\w\\W]*?>([\\w\\W]+?)</i>", "\"$1\"");
@@ -339,6 +335,9 @@ namespace Tests {
             s = Regex.Replace(s, "<ul>[\\s\\S]*</ul>", "");
 
 
+            s = Regex.Replace(s, "<code>[^<>]*?</code>", "");
+
+
 
             // remove unnecessary new lines
             s = Regex.Replace(s, "\\n", "");
@@ -349,12 +348,15 @@ namespace Tests {
             // misc
             s = Regex.Replace(s, "<ol></ol>", "");
             s = Regex.Replace(s, "<ol><li>", "");
-            s = Regex.Replace(s, "</div>", "");
+            s = Regex.Replace(s, "</div>", "");*/
 
-
-
+            s = s.Trim();
 
             if (string.IsNullOrWhiteSpace(s)) return;
+
+            if (s.Contains("<") || s.Contains(">")) {
+                Console.WriteLine("WARNING - String not parsed correctly: " + s);
+            }
 
 
             translations.Add(new Translation(s, grammaticalForm));
