@@ -39,8 +39,7 @@ namespace Offline_Dictionary {
             Stopwatch watch = new Stopwatch();
             watch.Start();
 
-            Translator t = new Translator();
-            t.Language = language;
+            Translator t = new Translator(language);
 
             StringBuilder sb = new StringBuilder();
             foreach (string s in words) {
@@ -227,8 +226,7 @@ namespace Offline_Dictionary {
 
             // we now have all the words loaded and categorised based on grammatical form
             // now to look up their translations
-            Translator translator = new Translator();
-            translator.Language = language;
+            Translator translator = new Translator(language);
             foreach (Tuple<string, List<string>> t in allWords) {
 
                 if (File.Exists(dir + dirTranslation + t.Item1 + "_translation.txt")) {

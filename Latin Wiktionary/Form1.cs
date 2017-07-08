@@ -2,36 +2,20 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using Tests;
 
 namespace Latin_Wiktionary {
     public partial class Form1 : Form {
 
-        private HashSet<Uri> urlHistory;
+        private HashSet<string> urlHistory;
 
         public Form1() {
             InitializeComponent();
-            urlHistory = new HashSet<Uri>();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e) {
-            string text = textBox1.Text;
-            string url = string.Format("https://en.wiktionary.org/wiki/{0}#Latin", text);
-            webBrowser1.Url = new Uri(url);
-
-
-
-
-
+            urlHistory = new HashSet<string>();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            ActiveControl = textBox1;
-            AcceptButton = buttonSearch;
-            CancelButton = buttonClear;
-        }
-
-        private void buttonClear_Click(object sender, EventArgs e) {
-            textBox1.Text = "";
+            ActiveControl = textBoxWord;
         }
 
         private void buttonBack_Click(object sender, EventArgs e) {
@@ -43,30 +27,11 @@ namespace Latin_Wiktionary {
         }
 
         private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e) {
-            //  string documentText = webBrowser1.DocumentText;
-            //string latinHeader = "<span class=\"mw - headline\" id=\"Latin\">Latin</span>";
-
-            //// chops off start up to Latin section
-            //int index = documentText.IndexOf(latinHeader);
-            //if (index == -1) {
-            //    // there is no Latin section in this URL
-            //    return;
-            //}
-            //documentText = documentText.Substring(index + latinHeader.Length);
-
-            //// chops off end of Latin section
-            //int index2 = documentText.IndexOf("<hr>");
-            //if (index2 != -1) {
-            //    documentText = documentText.Substring(0, index2);
-            //}
-
-            //Console.WriteLine(documentText);
-
-            urlHistory.Add(e.Url);
+            urlHistory.Add(e.Url.ToString());
 
         }
 
-        private void WriteUrl(Uri url, StreamWriter writer) {
+        private void WriteUrl(string url, StreamWriter writer) {
             string s = url.ToString();
             string prefix = "https://en.wiktionary.org/wiki/";
             string suffix = "#Latin";
@@ -91,11 +56,40 @@ namespace Latin_Wiktionary {
             string fileName = "history.plex";
 
             using (StreamWriter writer = File.AppendText(folderPath + fileName)) {
-                foreach (Uri url in urlHistory) {
+                foreach (string url in urlHistory) {
                     WriteUrl(url, writer);
                 }
             }
         }
+
+        private void buttonSearch_Click(object sender, EventArgs e) {
+            string word = textBoxWord.Text;
+            string language = textBoxLanguage.Text;
+            string url = string.Format("https://en.wiktionary.org/wiki/{0}#{1}", word, language);
+            webBrowser1.Navigate(new Uri(url));
+            Translator translator = new Translator(language);
+            string parsedContent = translator.Translate(word).ToString();
+            labelOutput.Text = parsedContent;
+        }
+
+        private void textBoxWord_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Escape) {
+                textBoxWord.Text = "";
+            }
+            if (e.KeyCode == Keys.Enter) {
+                buttonSearch_Click(null, null);
+            }
+        }
+
+        private void textBoxLanguage_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Escape) {
+                textBoxLanguage.Text = "";
+            }
+            if (e.KeyCode == Keys.Enter) {
+                buttonSearch_Click(null, null);
+            }
+        }
+
     }
 
 }

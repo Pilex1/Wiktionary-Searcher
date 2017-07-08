@@ -10,10 +10,6 @@ namespace Tests {
 
         static void Main(string[] args) {
 
-            //foreach (string file in Directory.GetFiles("C:/Users/torcm/AppData/Roaming/Plexico/Wiktionary Searcher/", "*.txt", SearchOption.AllDirectories)) {
-            //    FixFile(file);
-            //}
-
             Console.WriteLine("THE SUPER AWESOME WIKTIONARY SEARCHER");
             Console.WriteLine("© ALEX TAN 2017");
             Console.WriteLine();
@@ -24,8 +20,8 @@ namespace Tests {
             Console.WriteLine("\t(or English if there is no previous language)");
             Console.WriteLine();
 
-            DisplayTranslation("かん", "Japanese");
-
+            //  DisplayTranslation("かん", "Japanese");
+            //   DisplayTranslation("bonus", "Latin");
 
             //for (int i = 0; i < 30; i++) {
             //    double frequency = 440 * Math.Pow(Math.Pow(2, 1.0 / 12), i);
@@ -35,6 +31,9 @@ namespace Tests {
             //   DisplayTranslation("bonus", "Latin");
 
             //  DisplayTranslation("a", "English");
+            // DisplayTranslation("argentum", "Latin");
+            //  DisplayTranslation("an", "Latin");
+            DisplayTranslation("里", "Japanese");
             ReadAndTranslate();
 
             //DisplayTranslation("bona", "Latin");
@@ -82,18 +81,12 @@ namespace Tests {
         }
 
         static void DisplayTranslation(string input, string language) {
-            Translator translator = new Translator();
-            translator.Language = language;
+            Translator translator = new Translator(language);
             FullTranslation transList = translator.Translate(input);
-            Console.WriteLine("Translation from " + language + ": " + input);
+            Console.WriteLine("Translation from " + language + ": \"" + input + "\"");
             Console.WriteLine();
             Console.WriteLine(transList.ToString());
         }
-
-
-
-
-
 
         static void PrintMatch(Match m) {
             for (int i = 0; i < m.Groups.Count; i++) {

@@ -12,8 +12,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void a() {
-            Translator t = new Translator();
-            t.Language = "English";
+            Translator t = new Translator("English");
             FullTranslation f = t.Translate("a");
 
             Assert.AreEqual("Letter", f.Translations[0].g);
@@ -73,35 +72,40 @@ namespace Unit_Test___Wiktionary_Translator {
             Assert.AreEqual("Preposition", f.Translations[18].g);
             Assert.AreEqual("(archaic) To do with an action/movement; To, into. [16th century]", f.Translations[18].s);
 
-            Assert.AreEqual("Pronoun", f.Translations[19].g);
-            Assert.AreEqual("(obsolete outside England and Scotland dialects) He. [1150-1900]", f.Translations[19].s);
+            Assert.AreEqual("Verb", f.Translations[19].g);
+            Assert.AreEqual("(archaic or slang) Have. [between 1150 and 1350, continued in some use until 1650; used again after 1950]", f.Translations[19].s);
 
-            Assert.AreEqual("Interjection", f.Translations[20].g);
-            Assert.AreEqual("A meaningless syllable; ah.", f.Translations[20].s);
+            Assert.AreEqual("Pronoun", f.Translations[20].g);
+            Assert.AreEqual("(obsolete outside England and Scotland dialects) He. [1150-1900]", f.Translations[20].s);
 
-            Assert.AreEqual("Adverb", f.Translations[21].g);
-            Assert.AreEqual("(chiefly Scotland) All. [First attested from 1350 to 1470.]", f.Translations[21].s);
+            Assert.AreEqual("Interjection", f.Translations[21].g);
+            Assert.AreEqual("A meaningless syllable; ah.", f.Translations[21].s);
 
-            Assert.AreEqual("Adjective", f.Translations[22].g);
-            Assert.AreEqual("(chiefly Scotland) All. [First attested from 1350 to 1470.]", f.Translations[22].s);
+            Assert.AreEqual("Preposition", f.Translations[22].g);
+            Assert.AreEqual("(archaic, slang) Of.", f.Translations[22].s);
 
-            Assert.AreEqual("Symbol", f.Translations[23].g);
-            Assert.AreEqual("Distance from leading edge to aerodynamic center.", f.Translations[23].s);
+            Assert.AreEqual("Adverb", f.Translations[23].g);
+            Assert.AreEqual("(chiefly Scotland) All. [First attested from 1350 to 1470.]", f.Translations[23].s);
 
-            Assert.AreEqual("Symbol", f.Translations[24].g);
-            Assert.AreEqual("specific absorption coefficient", f.Translations[24].s);
+            Assert.AreEqual("Adjective", f.Translations[24].g);
+            Assert.AreEqual("(chiefly Scotland) All. [First attested from 1350 to 1470.]", f.Translations[24].s);
 
             Assert.AreEqual("Symbol", f.Translations[25].g);
-            Assert.AreEqual("specific rotation", f.Translations[25].s);
+            Assert.AreEqual("Distance from leading edge to aerodynamic center.", f.Translations[25].s);
 
             Assert.AreEqual("Symbol", f.Translations[26].g);
-            Assert.AreEqual("allele (recessive)", f.Translations[26].s);
+            Assert.AreEqual("specific absorption coefficient", f.Translations[26].s);
+
+            Assert.AreEqual("Symbol", f.Translations[27].g);
+            Assert.AreEqual("specific rotation", f.Translations[27].s);
+
+            Assert.AreEqual("Symbol", f.Translations[28].g);
+            Assert.AreEqual("allele (recessive)", f.Translations[28].s);
         }
 
         [TestMethod]
         public void aa() {
-            Translator t = new Translator();
-            t.Language = "English";
+            Translator t = new Translator("English");
             FullTranslation f = t.Translate("aa");
 
             Assert.AreEqual("(volcanology) A form of lava flow associated with Hawaiian-type volcanoes, consisting of basaltic rock, usually dark-colored with a jagged and loose, clinkery surface. Compare pahoehoe. [First attested in the mid 19th century.]", f.Translations[0].s);
@@ -110,8 +114,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void Aaronic() {
-            Translator t = new Translator();
-            t.Language = "English";
+            Translator t = new Translator("English");
             FullTranslation f = t.Translate("Aaronic");
 
             Assert.AreEqual("Pertaining to Aaron. [First attested in the mid 17th century.]", f.Translations[0].s);
@@ -122,8 +125,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void Aaronical() {
-            Translator t = new Translator();
-            t.Language = "English";
+            Translator t = new Translator("English");
             FullTranslation f = t.Translate("Aaronical");
 
             Assert.AreEqual("Alternative form of Aaronic [First attested in the early 17th century.]", f.Translations[0].s);

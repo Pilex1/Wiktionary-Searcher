@@ -38,10 +38,10 @@ namespace Offline_Dictionary {
             OfflineDictionary.TranslateFromWiktionary(language);
             */
 
-            //  OfflineDictionary.TranslateFromWiktionary("Japanese");
-            //  OfflineDictionary.TranslateFromWiktionary("Latin");
-            //  OfflineDictionary.TranslateFromWiktionary("Danish");
-            //    OfflineDictionary.TranslateFromWiktionary("English");
+            OfflineDictionary.TranslateFromWiktionary("Japanese");
+            OfflineDictionary.TranslateFromWiktionary("Latin");
+            OfflineDictionary.TranslateFromWiktionary("Danish");
+            OfflineDictionary.TranslateFromWiktionary("English");
 
 
 

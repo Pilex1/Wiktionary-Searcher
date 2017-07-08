@@ -8,9 +8,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void ацҳақәа() {
-            Translator t = new Translator();
-            t.Language = "Abkhaz";
-
+            Translator t = new Translator("Abkhaz");
             FullTranslation f = t.Translate("ацҳақәа");
 
             Assert.AreEqual("Noun", f.Translations[0].g);
@@ -19,9 +17,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void skæg() {
-            Translator t = new Translator();
-            t.Language = "Danish";
-
+            Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("skæg");
 
             Assert.AreEqual("(uncountable) fun (n or c)", f.Translations[2].s);
@@ -29,9 +25,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void chef() {
-            Translator t = new Translator();
-            t.Language = "Danish";
-
+            Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("chef");
 
             Assert.AreEqual("A chef, head cook (Can we verify this sense?)", f.Translations[1].s);
@@ -39,9 +33,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void hydrogennitrat() {
-            Translator t = new Translator();
-            t.Language = "Danish";
-
+            Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("hydrogennitrat");
 
             Assert.AreEqual("(inorganic chemistry) nitric acid, HNO3", f.Translations[0].s);
@@ -49,9 +41,7 @@ namespace Unit_Test___Wiktionary_Translator {
 
         [TestMethod]
         public void tandsmør() {
-            Translator t = new Translator();
-            t.Language = "Danish";
-
+            Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("tandsmør");
 
             Assert.AreEqual("Butter on bread thick enough to reveal tooth marks.", f.Translations[0].s);
