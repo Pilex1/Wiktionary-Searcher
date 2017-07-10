@@ -69,7 +69,7 @@ namespace Latin_Wiktionary {
             webBrowser1.Navigate(new Uri(url));
             Translator translator = new Translator(language);
             string parsedContent = translator.Translate(word).ToString();
-            labelOutput.Text = parsedContent;
+            textBoxOutput.Text = parsedContent;
         }
 
         private void textBoxWord_KeyDown(object sender, KeyEventArgs e) {

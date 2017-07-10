@@ -27,13 +27,7 @@ namespace Tests {
         }
 
         public FullTranslation Translate(string word) {
-            FullTranslation fullTranslation = new FullTranslation();
-            //     try {
-            Translate(fullTranslation, word, false);
-            //  Console.WriteLine(fullTranslation.ToString());
-            //   } catch (Exception e) {
-            //      fullTranslation = null;
-            //  }
+            FullTranslation fullTranslation = Translate(word, false);
             return fullTranslation;
         }
 
@@ -111,9 +105,11 @@ namespace Tests {
             return Util.ExtractHTMLFromWebsite(url);
         }
 
-        private void Translate(FullTranslation fullTranslations, string word, bool searchLinks) {
-
+        // returns null if unable to find a translation
+        private FullTranslation Translate(string word, bool searchLinks) {
+            FullTranslation fullTranslations = new FullTranslation();
             string s = LoadFromWiktionary(word);
+            if (s == null) return null;
             s = RefineLanguage(s);
             List<Tuple<string, string>> sections = SplitSections(s);
 
@@ -156,6 +152,8 @@ namespace Tests {
 
                 } else if (heading.StartsWith("Coordinate terms")) {
 
+                } else if (heading.StartsWith("Statistics")) {
+
                 } else {
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.PreserveWhitespace = true;
@@ -167,10 +165,11 @@ namespace Tests {
                             string nodeContent = node.InnerXml;
                             fullTranslations.AddTranslation(heading, nodeContent, language, searchLinks);
                         }
-
                     }
                 }
             }
+            return fullTranslations;
+
         }
 
     }

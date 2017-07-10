@@ -8,22 +8,9 @@ using System.Threading.Tasks;
 namespace Offline_Dictionary {
     class Program {
         static void Main(string[] args) {
-
-
             //   OfflineDictionary.TranslateFromFile("Latin", "C:/Users/torcm/AppData/Roaming/Plexico/Latin Vocab/test2.txt");
 
-
-            // some obscure language with very few entries, making it really easy to test stuff
-            //    OfflineDictionary.TranslateFromWiktionary("Afar");
-            // OfflineDictionary.TranslateFromWiktionary("Abkhaz");
-
-
             /*
-            Console.InputEncoding = Encoding.Unicode;
-            Console.OutputEncoding = Encoding.Unicode;
-
-
-
             Console.WriteLine("COPYRIGHT ALEX TAN 2017");
             Console.WriteLine();
             Console.WriteLine("Downloads all the Wiktionary entries for a language (may take up to several hours)");
@@ -38,14 +25,18 @@ namespace Offline_Dictionary {
             OfflineDictionary.TranslateFromWiktionary(language);
             */
 
-            OfflineDictionary.TranslateFromWiktionary("Japanese");
-            OfflineDictionary.TranslateFromWiktionary("Latin");
-            OfflineDictionary.TranslateFromWiktionary("Danish");
-            OfflineDictionary.TranslateFromWiktionary("English");
+            // OfflineDictionary.TranslateFromWiktionary("Japanese");
+            // OfflineDictionary.TranslateFromWiktionary("Latin");
+            // OfflineDictionary.TranslateFromWiktionary("Danish");
 
+            // some obscure language with very few entries, making it really easy to test stuff
+            OfflineDictionary dictionary;
+            //   dictionary = new OfflineDictionary("Abkhaz");
+            // dictionary.DownloadFromWiktionary();
 
+            dictionary = new OfflineDictionary("English");
+            dictionary.DownloadFromWiktionary();
 
-            Console.WriteLine();
             Console.WriteLine("Finished");
             Console.ReadLine();
         }

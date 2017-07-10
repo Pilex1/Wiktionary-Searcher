@@ -20,6 +20,8 @@ namespace Tests {
             Console.WriteLine("\t(or English if there is no previous language)");
             Console.WriteLine();
 
+            DisplayTranslation("learned", "English");
+
             //  DisplayTranslation("かん", "Japanese");
             //   DisplayTranslation("bonus", "Latin");
 
@@ -33,7 +35,7 @@ namespace Tests {
             //  DisplayTranslation("a", "English");
             // DisplayTranslation("argentum", "Latin");
             //  DisplayTranslation("an", "Latin");
-            DisplayTranslation("里", "Japanese");
+            // DisplayTranslation("里", "Japanese");
             ReadAndTranslate();
 
             //DisplayTranslation("bona", "Latin");
