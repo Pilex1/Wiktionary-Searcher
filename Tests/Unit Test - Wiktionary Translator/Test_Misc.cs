@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tests;
+using WiktionaryTranslator;
 
 namespace Unit_Test___Wiktionary_Translator {
     [TestClass]
@@ -11,8 +11,8 @@ namespace Unit_Test___Wiktionary_Translator {
             Translator t = new Translator("Abkhaz");
             FullTranslation f = t.Translate("ацҳақәа");
 
-            Assert.AreEqual("Noun", f.Translations[0].g);
-            Assert.AreEqual("plural of а́цҳа (ā́cḥā)", f.Translations[0].s);
+            Assert.AreEqual("Noun", f.Translations[0].grammaticalForm);
+            Assert.AreEqual("plural of а́цҳа (ā́cḥā)", f.Translations[0].translation);
         }
 
         [TestMethod]
@@ -20,7 +20,7 @@ namespace Unit_Test___Wiktionary_Translator {
             Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("skæg");
 
-            Assert.AreEqual("(uncountable) fun (n or c)", f.Translations[2].s);
+            Assert.AreEqual("(uncountable) fun (n or c)", f.Translations[2].translation);
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace Unit_Test___Wiktionary_Translator {
             Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("chef");
 
-            Assert.AreEqual("A chef, head cook (Can we verify this sense?)", f.Translations[1].s);
+            Assert.AreEqual("A chef, head cook (Can we verify this sense?)", f.Translations[1].translation);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace Unit_Test___Wiktionary_Translator {
             Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("hydrogennitrat");
 
-            Assert.AreEqual("(inorganic chemistry) nitric acid, HNO3", f.Translations[0].s);
+            Assert.AreEqual("(inorganic chemistry) nitric acid, HNO3", f.Translations[0].translation);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace Unit_Test___Wiktionary_Translator {
             Translator t = new Translator("Danish");
             FullTranslation f = t.Translate("tandsmør");
 
-            Assert.AreEqual("Butter on bread thick enough to reveal tooth marks.", f.Translations[0].s);
+            Assert.AreEqual("Butter on bread thick enough to reveal tooth marks.", f.Translations[0].translation);
         }
     }
 }

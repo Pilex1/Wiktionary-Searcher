@@ -6,7 +6,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using Tests;
+using WiktionaryTranslator;
 
 namespace Offline_Dictionary {
     public class OfflineDictionary {
@@ -39,11 +39,10 @@ namespace Offline_Dictionary {
                 sb.AppendLine("\t*** EMPTY TRANSLATION ***");
             } else {
                 foreach (Translation tr in fullTranslation.Translations) {
-                    if (string.IsNullOrWhiteSpace(tr.s)) {
-                        sb.AppendLine("\t" + tr.g + " { *** EMPTY TRANSLATION *** }");
-
+                    if (string.IsNullOrWhiteSpace(tr.translation)) {
+                        sb.AppendLine("\t" + tr.grammaticalForm + " { *** EMPTY TRANSLATION *** }");
                     } else {
-                        sb.AppendLine("\t" + tr.g + " { " + tr.s + " }");
+                        sb.AppendLine("\t" + tr.grammaticalForm + " { " + tr.translation + " }");
                     }
                 }
             }
@@ -132,7 +131,7 @@ namespace Offline_Dictionary {
                 // represents all the words in the language
                 allWords = new List<Tuple<string, List<string>>>();
 
-                string s = Util.ExtractHTMLFromWebsite(string.Format("https://en.wiktionary.org/wiki/Category:{0}_lemmas", language), -1);
+                string s = WebUtil.DownloadHtml(string.Format("https://en.wiktionary.org/wiki/Category:{0}_lemmas", language));
                 List<string> links = new List<string>();
                 MatchCollection collection = Regex.Matches(s, "<a href=\"(/wiki/Category:[^<>]+?)\"[^<>]*?>Category:[^<>]+?</a>");
                 foreach (Match match in collection) {
@@ -167,7 +166,7 @@ namespace Offline_Dictionary {
                     Match m2 = Regex.Match(link, "[\\s\\S]+?Category:([\\s\\S]+)");
                     Tuple<string, List<string>> tuple = new Tuple<string, List<string>>(m2.Groups[1].Captures[0].ToString(), new List<string>());
 
-                    s = Util.ExtractHTMLFromWebsite(link, -1);
+                    s = WebUtil.DownloadHtml(link);
                     // parse the website and keep going to the "Next page" if available
                     while (true) {
                         // find the "Pages in category [e.g. Latin verbs]" section
@@ -208,7 +207,7 @@ namespace Offline_Dictionary {
                         if (collection2.Count == 0) break;
 
                         string newLink = "https://en.wiktionary.org" + collection2[0].Groups[1].Captures[0].ToString().Replace("amp;", "");
-                        s = Util.ExtractHTMLFromWebsite(newLink, -1);
+                        s = WebUtil.DownloadHtml(newLink);
                         Console.WriteLine(GetTime(timeLoading) + " Accessing page: " + newLink);
                     }
 
@@ -260,11 +259,11 @@ namespace Offline_Dictionary {
                     for (int i = 0; i < wordList.Count; i++) {
                         string curWord = wordList[i];
                         if (string.IsNullOrWhiteSpace(curWord)) continue;
+                        Console.WriteLine(ProgressTime() + " " + section + " " + curWord);
                         FullTranslation fullTranslation = translator.Translate(curWord);
                         string translatedText = ToStringTranslationAll(curWord, fullTranslation);
                         translationWriter.WriteLine(translatedText);
                         processedItems++;
-                        Console.WriteLine(ProgressTime() + " " + section + " " + curWord);
                     }
 
                     translationWriter.Dispose();
@@ -292,7 +291,7 @@ namespace Offline_Dictionary {
 
                         string currentLine = null;
                         while ((currentLine = reader.ReadLine()) != null) {
-                            Match m1 = Regex.Match(currentLine, "(\\w+) {$");
+                            Match m1 = Regex.Match(currentLine, "^([^{]+?) {$");
                             if (m1.Success) {
                                 word = m1.Groups[1].Captures[0].ToString();
                                 continue;

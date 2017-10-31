@@ -31,11 +31,11 @@ namespace Offline_Dictionary {
 
             // some obscure language with very few entries, making it really easy to test stuff
             OfflineDictionary dictionary;
-            //   dictionary = new OfflineDictionary("Abkhaz");
-            // dictionary.DownloadFromWiktionary();
-
-            dictionary = new OfflineDictionary("English");
+            dictionary = new OfflineDictionary("Abkhaz");
             dictionary.DownloadFromWiktionary();
+
+            // dictionary = new OfflineDictionary("English");
+            //  dictionary.DownloadFromWiktionary();
 
             Console.WriteLine("Finished");
             Console.ReadLine();

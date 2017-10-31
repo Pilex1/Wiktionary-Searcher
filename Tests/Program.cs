@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using LibUtil;
 using System.IO;
 
-namespace Tests {
+namespace WiktionaryTranslator {
 
 
     class Program {
@@ -17,13 +17,12 @@ namespace Tests {
             Console.WriteLine();
             Console.WriteLine("\tSearches up a word in Wiktionary in a given language and displays its meaning/translation");
             Console.WriteLine("\tIf you leave the language option blank, it will default to the previous language");
-            Console.WriteLine("\t(or English if there is no previous language)");
+            Console.WriteLine("\t(or Latin if there is no previous language)");
             Console.WriteLine();
 
-            DisplayTranslation("learned", "English");
 
-            //  DisplayTranslation("かん", "Japanese");
-            //   DisplayTranslation("bonus", "Latin");
+            // DisplayTranslation("ポテトチップス", "Japanese");
+            //  DisplayTranslation("bonus", "Latin");
 
             //for (int i = 0; i < 30; i++) {
             //    double frequency = 440 * Math.Pow(Math.Pow(2, 1.0 / 12), i);
@@ -58,7 +57,7 @@ namespace Tests {
         }
 
         static void ReadAndTranslate() {
-            string language = "English";
+            string language = "Latin";
             while (true) {
                 Console.Write("Enter language: ");
                 string newLanguage = Console.ReadLine();
@@ -85,7 +84,7 @@ namespace Tests {
         static void DisplayTranslation(string input, string language) {
             Translator translator = new Translator(language);
             FullTranslation transList = translator.Translate(input);
-            Console.WriteLine("Translation from " + language + ": \"" + input + "\"");
+            Console.WriteLine(language);
             Console.WriteLine();
             Console.WriteLine(transList.ToString());
         }

@@ -59,9 +59,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tests.csproj">
+    <ProjectReference Include="..\Wiktionary Translator.csproj">
       <Project>{B1DE9DF0-F4CB-4EF9-927D-B47214B2BA54}</Project>
-      <Name>Tests</Name>
+      <Name>Wiktionary Translator</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

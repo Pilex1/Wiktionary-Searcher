@@ -26,12 +26,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonForward = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxLanguage = new System.Windows.Forms.TextBox();
             this.textBoxWord = new System.Windows.Forms.TextBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.textBoxOutput = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -87,16 +87,6 @@
             this.buttonBack.Text = "◀";
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-            // 
-            // webBrowser1
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.webBrowser1, 3);
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(3, 103);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(399, 393);
-            this.webBrowser1.TabIndex = 5;
             // 
             // buttonSearch
             // 
@@ -157,6 +147,16 @@
             this.textBoxWord.Size = new System.Drawing.Size(440, 43);
             this.textBoxWord.TabIndex = 10;
             this.textBoxWord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxWord_KeyDown);
+            // 
+            // webBrowser1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.webBrowser1, 3);
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(3, 103);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(399, 393);
+            this.webBrowser1.TabIndex = 5;
             // 
             // textBoxOutput
             // 

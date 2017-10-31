@@ -8,7 +8,7 @@ using LibUtil;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Tests {
+namespace WiktionaryTranslator {
     public class Translator {
 
         private string language = "English";
@@ -33,7 +33,13 @@ namespace Tests {
 
         private string GetLanguageFromH2(XmlNode h2) {
             if (!h2.Name.Equals("h2")) return null;
-            string heading = h2.InnerXml.CleanHTML();
+            string heading = h2.InnerXml.CleanXml((node) => {
+                bool insideContent = false;
+                if (node.Name == "span") {
+                    if (node.Attributes[0].Name == "class" && node.Attributes[0].Value == "mw-headline") insideContent = true;
+                }
+                return insideContent;
+            });
             heading = Regex.Replace(heading, "([\\s\\S]+)\\[edit\\]", "$1");
             if (heading == "Contents" || heading == "Navigation menu") return null;
             return heading;
@@ -102,12 +108,12 @@ namespace Tests {
 
         private string LoadFromWiktionary(string search) {
             string url = "https://en.wiktionary.org/wiki/" + search;
-            return Util.ExtractHTMLFromWebsite(url);
+            return WebUtil.DownloadHtml(url);
         }
 
         // returns null if unable to find a translation
         private FullTranslation Translate(string word, bool searchLinks) {
-            FullTranslation fullTranslations = new FullTranslation();
+            FullTranslation fullTranslations = new FullTranslation(word);
             string s = LoadFromWiktionary(word);
             if (s == null) return null;
             s = RefineLanguage(s);
@@ -154,20 +160,43 @@ namespace Tests {
 
                 } else if (heading.StartsWith("Statistics")) {
 
+                } else if (heading.StartsWith("Quotations")) {
+
+                } else if (heading.StartsWith("External links")) {
+
+                } else if (heading.StartsWith("Compounds")) {
+
+                } else if (heading.StartsWith("Citations")) {
+
+                } else if (heading.StartsWith("Bibliography")) {
+
+                } else if (heading.StartsWith("Hyponyms")) {
+
                 } else {
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.PreserveWhitespace = true;
                     xmlDoc.LoadXml("<text>" + content + "</text>");
 
-                    XmlNodeList list = xmlDoc.GetElementsByTagName("li");
-                    foreach (XmlNode node in list) {
-                        if (!node.HasParentNode("li")) {
+                    XmlNodeList nodesBold = xmlDoc.GetElementsByTagName("b");
+                    foreach (XmlNode node in nodesBold) {
+                        if (node.ChildNodes.Count == 0) continue;
+                        XmlNode child = node.ChildNodes[0];
+                        if (child.Name == "a") {
+                            fullTranslations.AddLatinInflection(child.InnerText);
+                        }
+                    }
+
+                    XmlNodeList nodesLi = xmlDoc.GetElementsByTagName("li");
+                    foreach (XmlNode node in nodesLi) {
+                        if (!node.HasParentNode("li") && !node.HasParentNode("ul")) {
                             string nodeContent = node.InnerXml;
                             fullTranslations.AddTranslation(heading, nodeContent, language, searchLinks);
                         }
                     }
                 }
             }
+
+            if (fullTranslations.Translations.Count == 0) return null;
             return fullTranslations;
 
         }
